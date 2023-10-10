@@ -1,8 +1,10 @@
 import Player from './Player.js'
+import InputHandler from './InputHandler.js'
 export default class Game {
   constructor(width, height) {
     this.width = width
     this.height = height
+    this.input = new InputHandler(this)
     this.keys = []
     this.enemies = []
     this.gameOver = false
@@ -10,6 +12,7 @@ export default class Game {
     this.debug = false
     this.player = new Player(this)
   }
+  
 
   update(deltaTime) {
     this.player.update(deltaTime)
