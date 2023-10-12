@@ -1,3 +1,4 @@
+import UserInterface from './UserInterface.js'
 import Player from './Player.js'
 import InputHandler from './InputHandler.js'
 export default class Game {

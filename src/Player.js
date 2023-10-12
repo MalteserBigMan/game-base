@@ -41,16 +41,22 @@ export default class Player {
 
     }
     draw(context) {
-        context.fillStyle = '#000000';
+        context.fillStyle = '#32CD32';
         context.fillRect(this.x, this.y, this.width, this.height);
         this.projectiles.forEach((projectile) => {
             projectile.draw(context)
         })
+        if (this.game.debug) {
+            context.strokeRect(this.x, this.y, this.width, this.height)
+            context.fillStyle = 'black'
+            context.font = '12px Arial'
+            context.fillText(this.frameX, this.x, this.y - 5)
+        }
     }
     shoot() {
         this.projectiles.push(
-          new Projectile(this.game, this.x + this.width, this.y + this.height / 2)
+            new Projectile(this.game, this.x + this.width, this.y + this.height / 2)
         )
-        
-      }
+    
+    } 
 }

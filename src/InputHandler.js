@@ -1,3 +1,4 @@
+import UserInterface from "./UserInterface"
 export default class InputHandler {
   constructor(game) {
     this.game = game
@@ -18,6 +19,11 @@ export default class InputHandler {
       // debug
       if (event.key === 'd') {
         this.game.debug = !this.game.debug
+      }
+      //Game over
+      if (event.key === 'p') {
+        this.game.gameOver = true
+        console.log(this.game.gameOver)
       }
 
       // skjuta
