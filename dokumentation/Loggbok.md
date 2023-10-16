@@ -6,3 +6,5 @@ Lektion 3: Har lyckats med att få till skjutfunktionen samt att rektangel rör 
 och hålla större mellanrum mellan de olika funktionerna.
 
 Lektion 4: Har börjat göra UI (nästan klar ska bara göra en egen funktion), upptäckte att jag aldrig ritar ut UI och därför kan jag inte skriva ut den. 
+
+Lektion 5: Har fixat timer, debug, gameover samt fiender som kommer från höger. Jag visste inte att jag behövde skapa "this.GameTime=0" och "this.ui = new UserInterface(this)", för att faktiskt använda ui och timern.

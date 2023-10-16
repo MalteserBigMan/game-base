@@ -16,6 +16,8 @@ export default class Game {
     this.enemies = []
     this.enemyTimer = 0
     this.enemyInterval = 1000
+    this.ui = new UserInterface(this)
+    this.gameTime = 0
   }
 
 
@@ -39,6 +41,7 @@ export default class Game {
   draw(context) {
     this.player.draw(context)
     this.enemies.forEach((enemy) => enemy.draw(context))
+    this.ui.draw(context)
   }
 }
 
