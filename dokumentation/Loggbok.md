@@ -8,3 +8,5 @@ och hålla större mellanrum mellan de olika funktionerna.
 Lektion 4: Har börjat göra UI (nästan klar ska bara göra en egen funktion), upptäckte att jag aldrig ritar ut UI och därför kan jag inte skriva ut den. 
 
 Lektion 5: Har fixat timer, debug, gameover samt fiender som kommer från höger. Jag visste inte att jag behövde skapa "this.GameTime=0" och "this.ui = new UserInterface(this)", för att faktiskt använda ui och timern.
+
+Lektion 5 & 6: Har fixat debug så den funkar ordentligt. Har också gjort steg 8 och lagt till hp, om en fiende blir träffad 3 gånger så försvinner den.
