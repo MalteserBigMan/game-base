@@ -5,8 +5,12 @@ export default class Enemy {
       this.y = 0
       this.speedX = 0
       this.markedForDeletion = false
+      this.hp = 3
     }
     update() {
+        if (this.hp <= 0){
+            this.markedForDeletion = true
+        }
         this.x += this.speedX
         if (this.x < 0) this.markedForDeletion = true
       }

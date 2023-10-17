@@ -20,6 +20,15 @@ export default class Game {
     this.gameTime = 0
   }
 
+  checkCollision(object1, object2) {
+    return (
+      object1.x < object2.x + object2.width &&
+      object1.x + object1.width > object2.x &&
+      object1.y < object2.y + object2.height &&
+      object1.height + object1.y > object2.y
+    )
+  }
+
 
   update(deltaTime) {
     this.player.update(deltaTime)
@@ -33,6 +42,24 @@ export default class Game {
       }
       this.enemies.forEach((enemy) => enemy.update(deltaTime))
       this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
+
+
+      this.enemies.forEach((enemy) => {
+        enemy.update(deltaTime)
+        if (this.checkCollision(this.player, enemy)) {
+          enemy.markedForDeletion = true
+        }
+        this.player.projectiles.forEach((projectile) => {
+          if (this.checkCollision(projectile, enemy)) {
+            projectile.markedForDeletion = true
+            enemy.hp--
+            console.log(enemy.hp)
+            if (enemy.hp <= 0){
+              enemy.markedForDeletion = true 
+          } 
+          }
+        })
+      })
     }
   }
   addEnemy() {
