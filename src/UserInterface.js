@@ -28,7 +28,28 @@ export default class UserInterface {
       )
     }
     if (this.game.debug) {
+      context.font = `15px Arial`
+      context.textAlign = 'right'
+      context.fillText(`x: ${this.game.player.x}`, this.game.width - 20, 25)
+      context.fillText(`y: ${this.game.player.y}`, this.game.width - 20, 50)
+      context.fillText(
+        `speedX: ${this.game.player.speedX}`,
+        this.game.width - 20,
+        75
+      )
+      context.fillText(
+        `speedY: ${this.game.player.speedY}`,
+        this.game.width - 20,
+        100
+      )
+      context.fillText(
+        `maxSpeed: ${this.game.player.maxSpeed}`,
+        this.game.width - 20,
+        125
+      )
+      context.fillText(`keys: ${this.game.keys}`, this.game.width - 20, 150)
     }
+
 
     context.restore()
   }
