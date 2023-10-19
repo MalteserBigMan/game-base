@@ -6,6 +6,7 @@ export default class Enemy {
       this.speedX = 0
       this.markedForDeletion = false
       this.hp = 3
+      this.color = '#0f0'
     }
     update() {
         if (this.hp <= 0){
@@ -15,7 +16,7 @@ export default class Enemy {
         if (this.x < 0) this.markedForDeletion = true
       }
       draw(context) {
-        context.fillStyle = '#0f0'
+        context.fillStyle = this.color
         context.fillRect(this.x, this.y, this.width, this.height)
         
         if (this.game.debug) {
