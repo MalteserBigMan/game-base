@@ -14,6 +14,7 @@ export default class Enemy {
         }
         this.x += this.speedX
         if (this.x < 0) this.markedForDeletion = true
+        
       }
       draw(context) {
         context.fillStyle = this.color
