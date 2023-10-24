@@ -10,15 +10,10 @@ export default class Player {
         this.speedY = 0
         this.maxSpeed = 10
         this.projectiles = []
+        this.jumpSpeed = 20
+    
     }
     update(deltaTime) {
-        if (this.game.keys.includes('ArrowUp')) {
-            this.speedY = -this.maxSpeed;
-        } else if (this.game.keys.includes('ArrowDown')) {
-            this.speedY = this.maxSpeed;
-        } else {
-            this.speedY = 0;
-        }
 
         if (this.game.keys.includes('ArrowLeft')) {
             this.speedX = -this.maxSpeed;

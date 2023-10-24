@@ -18,9 +18,10 @@ export default class Game {
     this.enemyTimer = 0
     this.enemyInterval = 1000
     this.ui = new UserInterface(this)
-    this.gameTime = 0
+    this.gameTime = 0 
+    this.ground = this.height - 100  
     this.platforms = [
-      new Platform(this, 0, this.ground, this.width, 100)
+      new Platform(this, 0, this.ground, this.width, 100),
     ]
   }
 
