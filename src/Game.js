@@ -3,6 +3,7 @@ import Player from './Player.js'
 import InputHandler from './InputHandler.js'
 import Slime from './Slime.js'
 import Platform from './Platform.js'
+import Camera from './Camera.js'
 export default class Game {
   constructor(width, height) {
     this.width = width
@@ -18,8 +19,9 @@ export default class Game {
     this.enemyTimer = 0
     this.enemyInterval = 1000
     this.ui = new UserInterface(this)
-    this.gameTime = 0 
-    this.ground = this.height - 100  
+    this.gameTime = 0
+    this.ground = this.height - 100
+    this.camera = new Camera(this, this.player.x, this.player.y, 0, 100)
     this.platforms = [
       new Platform(this, 0, this.ground, this.width, 100),
     ]
@@ -59,13 +61,14 @@ export default class Game {
             projectile.markedForDeletion = true
             enemy.hp--
             console.log(enemy.hp)
-            if (enemy.hp <= 0){
-              enemy.markedForDeletion = true 
-          } 
+            if (enemy.hp <= 0) {
+              enemy.markedForDeletion = true
+            }
           }
         })
       })
     }
+
     this.platforms.forEach((platform) => {
       if (this.checkPlatformCollision(this.player, platform)) {
         this.player.speedY = 0
@@ -84,10 +87,14 @@ export default class Game {
     this.enemies.push(new Slime(this))
   }
   draw(context) {
-    this.player.draw(context)
-    this.enemies.forEach((enemy) => enemy.draw(context))
     this.ui.draw(context)
-    this.platforms.forEach((platform) => platform.draw(context))
+    this.camera.apply(context)
+    this.level.draw(context)
+    this.player.draw(context, this.camera.x, this.camera.y)
+    this.enemies.forEach((enemy) =>
+      enemy.draw(context, this.camera.x, this.camera.y)
+    )
+    this.camera.reset(context)
   }
   checkPlatformCollision(object, platform) {
     if (
