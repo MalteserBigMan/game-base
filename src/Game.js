@@ -82,6 +82,7 @@ export default class Game {
         }
       })
     })
+    //this.Camera.update(this.player)
   }
   addEnemy() {
     this.enemies.push(new Slime(this))
@@ -89,7 +90,6 @@ export default class Game {
   draw(context) {
     this.ui.draw(context)
     this.camera.apply(context)
-    this.level.draw(context)
     this.player.draw(context, this.camera.x, this.camera.y)
     this.enemies.forEach((enemy) =>
       enemy.draw(context, this.camera.x, this.camera.y)
