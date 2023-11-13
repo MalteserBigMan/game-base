@@ -12,7 +12,7 @@ export default class Game {
     this.keys = []
     this.enemies = []
     this.gameOver = false
-    this.gravity = 1
+    this.gravity = 0.5
     this.debug = false
     this.player = new Player(this)
     this.enemies = []
@@ -23,7 +23,7 @@ export default class Game {
     this.ground = this.height - 100
     this.camera = new Camera(this, this.player.x, this.player.y, 0, 100)
     this.platforms = [
-      new Platform(this, 0, this.ground, this.width, 100),
+      new Platform(this, 0, this.ground, this.width * 20, 200),
     ]
   }
 
@@ -82,7 +82,8 @@ export default class Game {
         }
       })
     })
-    //this.Camera.update(this.player)
+    this.player.update(deltaTime)
+    this.camera.update(this.player)
   }
   addEnemy() {
     this.enemies.push(new Slime(this))
@@ -90,6 +91,7 @@ export default class Game {
   draw(context) {
     this.ui.draw(context)
     this.camera.apply(context)
+    this.platforms.forEach((platform) => platform.draw(context))
     this.player.draw(context, this.camera.x, this.camera.y)
     this.enemies.forEach((enemy) =>
       enemy.draw(context, this.camera.x, this.camera.y)

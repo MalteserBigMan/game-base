@@ -8,9 +8,9 @@ export default class Player {
         this.y = 100;
         this.speedX = 0
         this.speedY = 0
-        this.maxSpeed = 10
+        this.maxSpeed = 5
         this.projectiles = []
-        this.jumpSpeed = 20
+        this.jumpSpeed = 12
     
     }
     update(deltaTime) {

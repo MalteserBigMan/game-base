@@ -13,7 +13,7 @@ export default class Camera {
   update(player) {
     const halfWidth = this.width / 2
     const halfHeight = this.height / 2
-    const maxX = this.game.level.width
+    const maxX = this.game.width
 
     // calculate the target position for the camera
     let targetX = Math.min(Math.max(player.x - halfWidth, this.minX), maxX)
