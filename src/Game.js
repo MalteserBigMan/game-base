@@ -4,6 +4,7 @@ import InputHandler from './InputHandler.js'
 import Slime from './Slime.js'
 import Platform from './Platform.js'
 import Camera from './Camera.js'
+import Granne from './Granne.js'
 export default class Game {
   constructor(width, height) {
     this.width = width
@@ -86,8 +87,9 @@ export default class Game {
     this.camera.update(this.player)
   }
   addEnemy() {
-    this.enemies.push(new Slime(this, 100 , 200))
+    this.enemies.push(new Slime(this, 100, 200))
     this.enemies.push(new Slime(this, 200, 200))
+    this.enemies.push(new Granne(this, 300, 200))
   }
   draw(context) {
     this.ui.draw(context)
