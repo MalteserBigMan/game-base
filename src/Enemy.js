@@ -5,7 +5,7 @@ export default class Enemy {
       this.y = 0
       this.speedX = 0
       this.markedForDeletion = false
-      this.hp = 3
+      this.hp = 1
       this.color = '#0f0'
     }
     update() {

@@ -7,7 +7,9 @@ export default class Platform {
       this.y = y
     }
   
-    update() {}
+    update() {
+      
+    }
   
     draw(context) {
       context.fillStyle = '#795548'

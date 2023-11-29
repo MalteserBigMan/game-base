@@ -10,7 +10,6 @@ export default class Game {
     this.height = height
     this.input = new InputHandler(this)
     this.keys = []
-    this.enemies = []
     this.gameOver = false
     this.gravity = 0.5
     this.debug = false
@@ -25,6 +24,7 @@ export default class Game {
     this.platforms = [
       new Platform(this, 0, this.ground, this.width * 20, 200),
     ]
+
   }
 
   checkCollision(object1, object2) {
@@ -86,7 +86,8 @@ export default class Game {
     this.camera.update(this.player)
   }
   addEnemy() {
-    this.enemies.push(new Slime(this))
+    this.enemies.push(new Slime(this, 100 , 200))
+    this.enemies.push(new Slime(this, 200, 200))
   }
   draw(context) {
     this.ui.draw(context)
@@ -94,7 +95,7 @@ export default class Game {
     this.platforms.forEach((platform) => platform.draw(context))
     this.player.draw(context, this.camera.x, this.camera.y)
     this.enemies.forEach((enemy) =>
-      enemy.draw(context, this.camera.x, this.camera.y)
+      enemy.draw(context)
     )
     this.camera.reset(context)
   }
