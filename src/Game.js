@@ -34,24 +34,24 @@ export default class Game {
       object1.x + object1.width > object2.x &&
       object1.y < object2.y + object2.height &&
       object1.height + object1.y > object2.y
-    )
-  }
-
-
-  update(deltaTime) {
-    this.player.update(deltaTime)
-    if (!this.gameOver) {
-      this.gameTime += deltaTime
+      )
+    }
+    
+    
+    update(deltaTime) {
+      if (!this.gameOver) {
+      this.player.update(deltaTime)
       if (this.enemyTimer > this.enemyInterval && !this.gameOver) {
         this.addEnemy()
         this.enemyTimer = 0
       } else {
         this.enemyTimer += deltaTime
       }
-      this.enemies.forEach((enemy) => enemy.update(deltaTime))
-      this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
 
+      this.camera.update(this.player)
+      this.gameTime += deltaTime
 
+      
       this.enemies.forEach((enemy) => {
         enemy.update(deltaTime)
         if (this.checkCollision(this.player, enemy)) {
@@ -69,6 +69,9 @@ export default class Game {
         })
       })
     }
+    this.enemies.forEach((enemy) => enemy.update(deltaTime))
+    this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
+    
 
     this.platforms.forEach((platform) => {
       if (this.checkPlatformCollision(this.player, platform)) {
@@ -83,9 +86,8 @@ export default class Game {
         }
       })
     })
-    this.player.update(deltaTime)
-    this.camera.update(this.player)
   }
+ 
   addEnemy() {
     this.enemies.push(new Slime(this, 100, 200))
     this.enemies.push(new Slime(this, 200, 200))
