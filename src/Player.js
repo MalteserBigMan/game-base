@@ -2,7 +2,7 @@ import Projectile from "./Projectile";
 export default class Player {
     constructor(game) {
         this.game = game;
-        this.width = 32;
+        this.width = 64;
         this.height = 64;
         this.x = 50;
         this.y = 100;
@@ -11,6 +11,10 @@ export default class Player {
         this.maxSpeed = 5
         this.projectiles = []
         this.jumpSpeed = 12
+
+        const image = new Image()
+        image.src = "./src/assets/karaktaren.png"
+        this.image = image
     
     }
     update(deltaTime) {
@@ -47,8 +51,9 @@ export default class Player {
 
     }
     draw(context) {
-        context.fillStyle = '#32CD32';
-        context.fillRect(this.x, this.y, this.width, this.height);
+        //context.fillStyle = '#32CD32';
+        //context.fillRect(this.x, this.y, this.width, this.height);
+        context.drawImage(this.image, this.x, this.y, this.width, this.height)
         this.projectiles.forEach((projectile) => {
             projectile.draw(context)
         })
