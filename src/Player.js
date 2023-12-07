@@ -7,8 +7,10 @@ export default class Player {
         image.src = spriteImage
         this.image = image
         this.game = game;
-        this.width = 32;
-        this.height = 32;
+
+        this.width = 64;
+        this.height = 64;
+
         this.x = 50;
         this.y = 100;
         this.speedX = 0
@@ -16,6 +18,12 @@ export default class Player {
         this.maxSpeed = 5
         this.projectiles = []
         this.jumpSpeed = 12
+
+
+        const image = new Image()
+        image.src = "./src/assets/karaktaren.png"
+        this.image = image
+
         this.frameX = 0
         this.frameY = 1
         this.maxFrame = 8
@@ -71,8 +79,9 @@ export default class Player {
 
     }
     draw(context) {
-        context.fillStyle = '#32CD32';
-        context.fillRect(this.x, this.y, this.width, this.height);
+        //context.fillStyle = '#32CD32';
+        //context.fillRect(this.x, this.y, this.width, this.height);
+        context.drawImage(this.image, this.x, this.y, this.width, this.height)
         this.projectiles.forEach((projectile) => {
             projectile.draw(context)
         })
