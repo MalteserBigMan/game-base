@@ -4,13 +4,13 @@ import InputHandler from './InputHandler.js'
 import Slime from './Slime.js'
 import Platform from './Platform.js'
 import Camera from './Camera.js'
+import Granne from './Granne.js'
 export default class Game {
   constructor(width, height) {
     this.width = width
     this.height = height
     this.input = new InputHandler(this)
     this.keys = []
-    this.enemies = []
     this.gameOver = false
     this.gravity = 0.5
     this.debug = false
@@ -25,6 +25,7 @@ export default class Game {
     this.platforms = [
       new Platform(this, 0, this.ground, this.width * 20, 200),
     ]
+
   }
 
   checkCollision(object1, object2) {
@@ -33,24 +34,24 @@ export default class Game {
       object1.x + object1.width > object2.x &&
       object1.y < object2.y + object2.height &&
       object1.height + object1.y > object2.y
-    )
-  }
-
-
-  update(deltaTime) {
-    this.player.update(deltaTime)
-    if (!this.gameOver) {
-      this.gameTime += deltaTime
+      )
+    }
+    
+    
+    update(deltaTime) {
+      if (!this.gameOver) {
+      this.player.update(deltaTime)
       if (this.enemyTimer > this.enemyInterval && !this.gameOver) {
         this.addEnemy()
         this.enemyTimer = 0
       } else {
         this.enemyTimer += deltaTime
       }
-      this.enemies.forEach((enemy) => enemy.update(deltaTime))
-      this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
 
+      this.camera.update(this.player)
+      this.gameTime += deltaTime
 
+      
       this.enemies.forEach((enemy) => {
         enemy.update(deltaTime)
         if (this.checkCollision(this.player, enemy)) {
@@ -68,6 +69,9 @@ export default class Game {
         })
       })
     }
+    this.enemies.forEach((enemy) => enemy.update(deltaTime))
+    this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
+    
 
     this.platforms.forEach((platform) => {
       if (this.checkPlatformCollision(this.player, platform)) {
@@ -82,11 +86,12 @@ export default class Game {
         }
       })
     })
-    this.player.update(deltaTime)
-    this.camera.update(this.player)
   }
+ 
   addEnemy() {
-    this.enemies.push(new Slime(this))
+    this.enemies.push(new Slime(this, 100, 200))
+    this.enemies.push(new Slime(this, 200, 200))
+    this.enemies.push(new Granne(this, 300, 200))
   }
   draw(context) {
     this.ui.draw(context)
@@ -94,7 +99,7 @@ export default class Game {
     this.platforms.forEach((platform) => platform.draw(context))
     this.player.draw(context, this.camera.x, this.camera.y)
     this.enemies.forEach((enemy) =>
-      enemy.draw(context, this.camera.x, this.camera.y)
+      enemy.draw(context)
     )
     this.camera.reset(context)
   }
