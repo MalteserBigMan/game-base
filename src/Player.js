@@ -20,9 +20,8 @@ export default class Player {
         this.jumpSpeed = 12
 
 
-        const image = new Image()
+
         image.src = "./src/assets/karaktaren.png"
-        this.image = image
 
         this.frameX = 0
         this.frameY = 1
