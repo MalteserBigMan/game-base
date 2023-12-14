@@ -1,5 +1,5 @@
 import Projectile from "./Projectile";
-import spriteImage from "./assets/sprites/Idle Run (78x58).png"
+import spriteImage from "./assets/karaktaren.png"
 
 export default class Player {
     constructor(game) {
@@ -18,10 +18,6 @@ export default class Player {
         this.maxSpeed = 5
         this.projectiles = []
         this.jumpSpeed = 12
-
-
-
-        image.src = "./src/assets/karaktaren.png"
 
         this.frameX = 0
         this.frameY = 1
