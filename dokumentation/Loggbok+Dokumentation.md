@@ -14,3 +14,5 @@ Lektion 5 & 6: Har fixat debug så den funkar ordentligt. Har också gjort steg 
 Lektion 7: Har helt ärligt inte gjort så mycket, har läst igenom nästa steg men har bara ändrat lite färger idag.
 
 lektion 8 & 9: Har fixat hopp funktionen och börjat på att göra en kamera.
+
+
