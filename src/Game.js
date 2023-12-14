@@ -94,14 +94,14 @@ export default class Game {
     this.enemies.push(new Granne(this, 300, 200))
   }
   draw(context) {
-    this.ui.draw(context)
     this.camera.apply(context)
     this.platforms.forEach((platform) => platform.draw(context))
-    this.player.draw(context, this.camera.x, this.camera.y)
     this.enemies.forEach((enemy) =>
-      enemy.draw(context)
+    enemy.draw(context)
     )
+    this.player.draw(context)
     this.camera.reset(context)
+    this.ui.draw(context)
   }
   checkPlatformCollision(object, platform) {
     if (
