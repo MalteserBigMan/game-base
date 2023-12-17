@@ -1,5 +1,5 @@
 import Projectile from "./Projectile";
-import spriteImage from "./assets/karaktaren.png"
+import spriteImage from "./assets/sprites/Skin9.png"
 
 export default class Player {
     constructor(game) {
@@ -8,8 +8,8 @@ export default class Player {
         this.image = image
         this.game = game;
 
-        this.width = 64;
-        this.height = 64;
+        this.width = 128;
+        this.height = 128;
 
         this.x = 50;
         this.y = 100;
@@ -19,9 +19,10 @@ export default class Player {
         this.projectiles = []
         this.jumpSpeed = 12
 
+
         this.frameX = 0
         this.frameY = 1
-        this.maxFrame = 8
+        this.maxFrame = 4
         this.fps = 5
         this.timer = 0
         this.interval = 1000 / this.fps
@@ -42,41 +43,51 @@ export default class Player {
         })
         this.projectiles = this.projectiles.filter(
             (projectile) => !projectile.markedForDeletion
-        )
-
-        if (this.game.keys.includes('ArrowUp') && this.grounded) {
-            this.speedY = -this.jumpSpeed
-            this.grounded = false
-        }
-
+            )
+            
+            if (this.game.keys.includes('ArrowUp') && this.grounded) {
+                this.speedY = -this.jumpSpeed
+                this.grounded = false
+            }
+            this.y += this.speedY;
+            this.x += this.speedX;
+            
         if (this.grounded) {
             this.speedY = 0
         } else {
             this.speedY += this.game.gravity
         }
-        // sprite animation update
-        if (this.timer > this.interval) {
-            this.frameX++
-            this.timer = 0
-        } else {
-            this.timer += deltaTime
-        }
+
+        if (this.speedX !== 0) {
+            this.frameY = 1
+          } else {
+            this.frameY = 0
+          }
+
+            // flip sprite direction
+    if (this.speedX < 0) {
+        this.flip = true
+      } else if (this.speedX > 0) {
+        this.flip = false
+      }
+
+    // sprite animation update
+    if (this.timer > this.interval) {
+        this.frameX++
+        this.timer = 0
+      } else {
+        this.timer += deltaTime
+      }
 
         // reset frameX when it reaches maxFrame
         if (this.frameX >= this.maxFrame) {
             this.frameX = 0
         }
-
-
-        this.y += this.speedY;
-        this.x += this.speedX;
-
-
     }
     draw(context) {
         //context.fillStyle = '#32CD32';
         //context.fillRect(this.x, this.y, this.width, this.height);
-        context.drawImage(this.image, this.x, this.y, this.width, this.height)
+     //   context.drawImage(this.image, this.x, this.y, this.width-100, this.height)
         this.projectiles.forEach((projectile) => {
             projectile.draw(context)
         })
@@ -94,14 +105,14 @@ export default class Player {
         context.drawImage(
             this.image,
             this.frameX * this.width,
-            this.frameY * this.height - 15,
+            this.frameY * this.height,
             this.width,
             this.height,
             this.flip ? this.x * -1 - this.width : this.x,
             this.y,
             this.width,
             this.height
-        )
+          )
 
         context.restore()
     }

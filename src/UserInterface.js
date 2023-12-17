@@ -1,9 +1,12 @@
+import Enemy from "./Enemy"
+
 export default class UserInterface {
   constructor(game) {
     this.game = game
     this.fontSize = 25
     this.fontFamily = 'Arial'
     this.color = 'white'
+    this.poäng = 0
   }
   draw(context) {
     context.save()
@@ -18,6 +21,11 @@ export default class UserInterface {
       20,
       100
     )
+    context.font = `${this.fontSize}px ${this.fontFamily}`
+    context.fillText(
+      `Poäng: ${(this.poäng)*10}`,
+      20,
+      130)
     if (this.game.gameOver) {
       context.textAlign = 'center'
       context.font = `50px ${this.fontFamily}`
@@ -48,6 +56,13 @@ export default class UserInterface {
         125
       )
       context.fillText(`keys: ${this.game.keys}`, this.game.width - 20, 150)
+
+    }
+
+    if (Enemy.markedForDeletion){
+      (this.poäng++)
+      console.log(Enemy.markedForDeletion)
+      Enemy.markedForDeletion = false
     }
 
 
