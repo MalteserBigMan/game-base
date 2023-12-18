@@ -18,11 +18,13 @@ export default class Game {
     this.debug = false
     this.player = new Player(this)
     this.enemies = []
+    this.speed = 1;
     this.enemyTimer = 0
     this.enemyInterval = 1000
     this.ui = new UserInterface(this)
     this.gameTime = 0
     this.ground = this.height - 100
+    this.canSpawnEnemy = true;
     this.camera = new Camera(this, this.player.x, this.player.y, 0, 100)
     this.platforms = [
       new Platform(this, 0, this.ground, this.width * 20, 200),
@@ -44,7 +46,7 @@ export default class Game {
     if (!this.gameOver) {
       this.player.update(deltaTime)
       if (this.enemyTimer > this.enemyInterval && !this.gameOver) {
-        this.addEnemy()
+        //this.addEnemy()
         this.enemyTimer = 0
       } else {
         this.enemyTimer += deltaTime
@@ -74,6 +76,15 @@ export default class Game {
         })
       })
     }
+
+    if (this.enemyTimer > this.enemyInterval && !this.gameOver && this.canSpawnEnemy) {
+      this.addEnemy();
+      this.enemyTimer = 0;
+      this.canSpawnEnemy = false;
+    } else {
+      this.enemyTimer += deltaTime;
+    }
+
     this.enemies.forEach((enemy) => enemy.update(deltaTime))
     this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
 
@@ -96,7 +107,6 @@ export default class Game {
   addEnemy() {
     this.enemies.push(new Slime(this, 400, 350))
     this.enemies.push(new Slime(this, 200, 350))
-    this.enemies.push(new Granne(this, 300, 350))
   }
   draw(context) {
     this.background.draw(context)
@@ -109,6 +119,9 @@ export default class Game {
     this.player.draw(context)
     this.camera.reset(context)
   }
+
+
+
   checkPlatformCollision(object, platform) {
     if (
       object.y + object.height >= platform.y &&

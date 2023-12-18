@@ -32,6 +32,7 @@ export default class Slime extends Enemy {
         this.frameX++;
         this.timer = 0;
         
+        
         if (this.frameX >= this.maxFrame) {
             this.frameX = 0;
         }

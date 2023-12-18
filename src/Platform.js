@@ -12,8 +12,7 @@ export default class Platform {
     }
   
     draw(context) {
-      context.fillStyle = '#795548'
-      context.fillRect(this.x, this.y, this.width, this.height)
+
   
       if (this.game.debug) {
         context.fillStyle = 'black'

@@ -1,7 +1,7 @@
+import Layer from './Layer'
 import skyImage from './assets/Layers/sky_layer.png'
 import middleImage from './assets/Layers/middle_layer.png'
 import foregroundImage from './assets/Layers/foreground_layer.png'
-import Layer from './Layer'
 
 export default class{
     constructor(game){
@@ -15,7 +15,6 @@ export default class{
         const foreground = new Image()
         foreground.src = foregroundImage
         this.foregroundLayer = new Layer(this.game, foreground, 1760, 512, 0.8)
-        
         this.layers = [
             this.skyLayer,
             this.middleLayer,

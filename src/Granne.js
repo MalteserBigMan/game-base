@@ -13,4 +13,3 @@ export default class Granne extends Enemy {
   }
 }
 
-//block följer kameran, grafik problem och konstiga hitboxes (borde höra till kameran)
