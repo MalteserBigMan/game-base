@@ -12,13 +12,13 @@ export default class Slime extends Enemy {
     this.lives = 2;
     this.color = '#fff';
 
-    // sprite img
+    
     const image = new Image();
     image.src = pumpkinImage;
     this.image = image;
    
     this.frameX = 0;
-    this.frameY = 1;
+    this.frameY = 0;
     this.maxFrame = 3;
     this.fps = 2;
     this.timer = 0;
@@ -28,18 +28,30 @@ export default class Slime extends Enemy {
   }
 
   update(deltaTime) {
-    if (this.timer > this.interval) {
+    if (this.hp <= 0) {
+
+      this.frameY === 1
+    }    
+
+    if (this.frameY === 0) {
+      this.frameX = 0; 
+    } else {
+      if (this.timer > this.interval) {
         this.frameX++;
         this.timer = 0;
-        
-        
+
+
         if (this.frameX >= this.maxFrame) {
-            this.frameX = 0;
+          this.frameX = 0;
         }
-    } else {
+      } else {
         this.timer += deltaTime;
+      }
     }
+
+    
   }
+
 
   draw(context) {
     if (this.flip) {
@@ -47,11 +59,10 @@ export default class Slime extends Enemy {
       context.scale(-1, 1);
     }
   
-    // Calculate the source coordinates based on the current frame
+
     const sourceX = this.frameX * this.width;
     const sourceY = this.frameY * this.height;
-  
-    // Draw the frame on the canvas
+
     context.drawImage(
       this.image,
       sourceX,

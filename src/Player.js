@@ -64,14 +64,13 @@ export default class Player {
             this.frameY = 0
           }
 
-            // flip sprite direction
     if (this.speedX < 0) {
         this.flip = true
       } else if (this.speedX > 0) {
         this.flip = false
       }
 
-    // sprite animation update
+    
     if (this.timer > this.interval) {
         this.frameX++
         this.timer = 0
@@ -79,15 +78,15 @@ export default class Player {
         this.timer += deltaTime
       }
 
-        // reset frameX when it reaches maxFrame
+        
         if (this.frameX >= this.maxFrame) {
             this.frameX = 0
         }
+
+        
     }
     draw(context) {
-        //context.fillStyle = '#32CD32';
-        //context.fillRect(this.x, this.y, this.width, this.height);
-     //   context.drawImage(this.image, this.x, this.y, this.width-100, this.height)
+
         this.projectiles.forEach((projectile) => {
             projectile.draw(context)
         })

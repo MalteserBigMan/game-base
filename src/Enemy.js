@@ -10,6 +10,7 @@ export default class Enemy {
   }
   update() {
     if (this.hp <= 0) {
+      
       this.markedForDeletion = true
     }
     this.x += this.speedX

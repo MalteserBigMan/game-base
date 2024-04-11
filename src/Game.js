@@ -46,7 +46,7 @@ export default class Game {
     if (!this.gameOver) {
       this.player.update(deltaTime)
       if (this.enemyTimer > this.enemyInterval && !this.gameOver) {
-        //this.addEnemy()
+
         this.enemyTimer = 0
       } else {
         this.enemyTimer += deltaTime
@@ -69,9 +69,9 @@ export default class Game {
             projectile.markedForDeletion = true
             enemy.hp--
             console.log(enemy.hp)
-            if (enemy.hp <= 0) {
-              enemy.markedForDeletion = true
-            }
+            // if (enemy.hp <= 0) {
+            //   enemy.markedForDeletion = true
+            // }
           }
         })
       })
