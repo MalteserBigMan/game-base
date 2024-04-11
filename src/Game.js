@@ -62,7 +62,7 @@ export default class Game {
       this.enemies.forEach((enemy) => {
         enemy.update(deltaTime)
         if (this.checkCollision(this.player, enemy)) {
-          enemy.markedForDeletion = true
+          enemy.hp--
         }
         this.player.projectiles.forEach((projectile) => {
           if (this.checkCollision(projectile, enemy)) {
@@ -74,7 +74,19 @@ export default class Game {
             // }
           }
         })
+        if (enemy.hp <= 0) {
+
+          enemy.frameY = 1
+          if(enemy.frameY === 1 && enemy.frameX == 3 ){
+            enemy.dead++
+          }
+    
+          if(enemy.dead === 1){
+            enemy.markedForDeletion = true
+          }
+        }
       })
+    
     }
 
     if (this.enemyTimer > this.enemyInterval && !this.gameOver && this.canSpawnEnemy) {

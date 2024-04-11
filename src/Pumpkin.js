@@ -19,19 +19,19 @@ export default class Slime extends Enemy {
    
     this.frameX = 0;
     this.frameY = 0;
-    this.maxFrame = 3;
+    this.maxFrame = 4;
     this.fps = 2;
     this.timer = 0;
     this.interval = 1000 / this.fps;
     this.flip = false;
     
+
+    this.dead = 0;
   }
 
   update(deltaTime) {
-    if (this.hp <= 0) {
 
-      this.frameY === 1
-    }    
+    
 
     if (this.frameY === 0) {
       this.frameX = 0; 
