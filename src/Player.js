@@ -31,9 +31,9 @@ export default class Player {
     }
     update(deltaTime) {
 
-        if (this.game.keys.includes('ArrowLeft')) {
+        if (this.game.keys.includes('a')) {
             this.speedX = -this.maxSpeed;
-        } else if (this.game.keys.includes('ArrowRight')) {
+        } else if (this.game.keys.includes('d')) {
             this.speedX = this.maxSpeed;
         } else {
             this.speedX = 0;
@@ -45,7 +45,7 @@ export default class Player {
             (projectile) => !projectile.markedForDeletion
             )
             
-            if (this.game.keys.includes('ArrowUp') && this.grounded) {
+            if (this.game.keys.includes('w') && this.grounded) {
                 this.speedY = -this.jumpSpeed
                 this.grounded = false
             }

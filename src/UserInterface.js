@@ -4,9 +4,10 @@ export default class UserInterface {
   constructor(game) {
     this.game = game
     this.fontSize = 25
-    this.fontFamily = 'Arial'
+    this.fontFamily = 'Pixelify Sans'
     this.color = 'white'
-    this.poäng = 0
+    this.NameInput = false
+
   }
   draw(context) {
     context.save()
@@ -23,7 +24,7 @@ export default class UserInterface {
     )
     context.font = `${this.fontSize}px ${this.fontFamily}`
     context.fillText(
-      `Poäng: ${(this.poäng)*10}`,
+      `Points: ${this.game.score}`,
       20,
       130)
     if (this.game.gameOver) {
@@ -35,6 +36,18 @@ export default class UserInterface {
         this.game.height / 2 - 20
       )
     }
+    if (this.game.gameOver){
+      setTimeout(() => {
+        NameInput = true , 2000
+      })
+    }
+    if (this.NameInput){
+      this.gameOver = false
+      context.textAlign = 'center'
+      context.font = `40px ${this.fontFamily}`
+      context.fillText('Input Name')
+    }
+
     if (this.game.debug) {
       context.font = `15px Arial`
       context.textAlign = 'right'
@@ -59,11 +72,6 @@ export default class UserInterface {
 
     }
 
-    if (Enemy.markedForDeletion){
-      (this.poäng++)
-      console.log(Enemy.markedForDeletion)
-      Enemy.markedForDeletion = false
-    }
 
 
     context.restore()

@@ -17,7 +17,12 @@ export default class Game {
     this.gravity = 0.5
     this.debug = false
     this.player = new Player(this)
-    this.enemies = []
+    this.enemies = [(new Slime(this, 400, 350)),
+    (new Slime(this, 200, 350)),
+    (new Slime(this, 700, 350)),
+    (new Slime(this, 1500, 350)),
+    (new Slime(this, 1300, 350)),
+    (new Slime(this, 1100, 350))]
     this.speed = 1;
     this.enemyTimer = 0
     this.enemyInterval = 1000
@@ -29,6 +34,7 @@ export default class Game {
     this.platforms = [
       new Platform(this, 0, this.ground, this.width * 20, 200),
     ]
+    this.score = 0
 
   }
 
@@ -68,7 +74,6 @@ export default class Game {
           if (this.checkCollision(projectile, enemy)) {
             projectile.markedForDeletion = true
             enemy.hp--
-            console.log(enemy.hp)
             // if (enemy.hp <= 0) {
             //   enemy.markedForDeletion = true
             // }
@@ -77,20 +82,27 @@ export default class Game {
         if (enemy.hp <= 0) {
 
           enemy.frameY = 1
-          if(enemy.frameY === 1 && enemy.frameX == 3 ){
+          if (enemy.frameY === 1 && enemy.frameX == 3) {
             enemy.dead++
           }
-    
-          if(enemy.dead === 1){
+
+          if (enemy.dead === 1) {
             enemy.markedForDeletion = true
           }
         }
+        if (enemy.markedForDeletion) {
+          this.score += 10
+        }
       })
-    
+      if (this.enemies === undefined || this.enemies.length == 0) {
+        this.gameOver = true
+        console.log(this.enemies)
+      }
+
     }
 
+
     if (this.enemyTimer > this.enemyInterval && !this.gameOver && this.canSpawnEnemy) {
-      this.addEnemy();
       this.enemyTimer = 0;
       this.canSpawnEnemy = false;
     } else {
@@ -116,10 +128,8 @@ export default class Game {
     })
   }
 
-  addEnemy() {
-    this.enemies.push(new Slime(this, 400, 350))
-    this.enemies.push(new Slime(this, 200, 350))
-  }
+
+
   draw(context) {
     this.background.draw(context)
     this.ui.draw(context)
