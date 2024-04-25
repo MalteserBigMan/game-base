@@ -69,9 +69,9 @@ export default class UserInterface {
         125
       )
       context.fillText(`keys: ${this.game.keys}`, this.game.width - 20, 150)
-
+        
     }
-
+    //window.prompt("namn")
 
 
     context.restore()
