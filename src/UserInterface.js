@@ -1,12 +1,11 @@
 import Enemy from "./Enemy"
-
+import Game from "./Game"
 export default class UserInterface {
   constructor(game) {
     this.game = game
     this.fontSize = 25
     this.fontFamily = 'Pixelify Sans'
     this.color = 'white'
-    this.NameInput = false
 
   }
   draw(context) {
@@ -37,15 +36,11 @@ export default class UserInterface {
       )
     }
     if (this.game.gameOver){
-      setTimeout(() => {
-        NameInput = true , 2000
-      })
-    }
-    if (this.NameInput){
-      this.gameOver = false
-      context.textAlign = 'center'
-      context.font = `40px ${this.fontFamily}`
-      context.fillText('Input Name')
+        let name = prompt ("What's your name?") 
+        if (name != null){
+          alert(`Your score is: ${this.game.score}`)
+        
+        }
     }
 
     if (this.game.debug) {
@@ -71,7 +66,7 @@ export default class UserInterface {
       context.fillText(`keys: ${this.game.keys}`, this.game.width - 20, 150)
         
     }
-    //window.prompt("namn")
+    
 
 
     context.restore()
