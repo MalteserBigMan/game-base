@@ -38,7 +38,9 @@ export default class UserInterface {
     if (this.game.gameOver){
         let name = prompt ("What's your name?") 
         if (name != null){
-          alert(`Your score is: ${this.game.score}`)
+          alert(`Your score is: ${this.game.score} 
+          Your alltime highscore is: `)
+          
         
         }
     }
