@@ -14,6 +14,7 @@ export default class Game {
     this.background = new Background(this)
     this.keys = []
     this.gameOver = false
+    this.doTheHighscoreThing = false
     this.gravity = 0.5
     this.debug = false
     this.player = new Player(this)
@@ -97,8 +98,13 @@ export default class Game {
       if (this.enemies === undefined || this.enemies.length == 0) {
         this.gameOver = true
         console.log(this.enemies)
+        this.doTheHighscoreThing()
       }
 
+    }
+
+    if (this.doTheHighscoreThing = true){
+      
     }
 
 
@@ -164,6 +170,26 @@ export default class Game {
       return false
     }
   }
+
+  // export function getScore(element) {
+  //   const url = "http://localhost:3000"
+  //   throttleFetch(`${url}/score`)
+  //     .then((response) => response.text())
+  //     .then((text) => {
+  //       console.log(text)
+  //       const scores = JSON.parse(text)
+  //       const list = document.createElement("ul")
+  //       scores.forEach((score) => {
+  //         const item = document.createElement("li")
+  //         item.textContent = `${score.name}: ${score.score}`
+  //         list.appendChild(item)
+  //       })
+  //       element.appendChild(list)
+  //     })
+  //     .catch((error) => {
+  //       console.error(error)
+  //     })
+  
 
 }
 
