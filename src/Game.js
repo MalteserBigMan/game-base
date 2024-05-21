@@ -40,7 +40,7 @@ export default class Game {
     this.score = 0
     this.name = "def"
     this.highscore = new Highscore(this)
-    this.highscore.testApi()
+    this.highscore.getScore()
 
   }
 
@@ -104,7 +104,6 @@ export default class Game {
         this.gameOver = true
         console.log(this.enemies)
         this.highscore.postScore(this.score)
-        this.highscore.getScore()
       }
 
     }

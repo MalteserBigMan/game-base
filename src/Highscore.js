@@ -3,6 +3,7 @@ import Bottleneck from 'bottleneck'
 export default class Highscore {
   constructor(game) {
     this.game = game
+    this.highscore
     this.url = "https://victorious-wakeful-mistake.glitch.me"
     this.limiter = new Bottleneck({
       minTime: 200 // 5 requests per second
@@ -52,21 +53,14 @@ export default class Highscore {
 
   }
 
-  getScore() {
+  async getScore() {
     console.log("hämta hiscore med jens kod")
 
-    fetch(`${this.url}/score`)
-      .then((response) => response.text())
+    await fetch(`${this.url}/score`)
+      .then((response) => response.json())
       .then((text) => {
-        console.log(text)
-        const scores = JSON.parse(text)
-        const list = document.createElement("ul")
-        scores.forEach((score) => {
-          const item = document.createElement("li")
-          item.textContent = `${score.name}: ${score.score}`
-          list.appendChild(item)
-        })
-        element.appendChild(list)
+        this.highscore = text[0].score
+        console.log(this.highscore)
       })
       .catch((error) => {
         console.error(error)

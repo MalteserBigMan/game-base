@@ -1,5 +1,6 @@
 import Enemy from "./Enemy"
 import Game from "./Game"
+import Highscore from "./Highscore"
 export default class UserInterface {
   constructor(game) {
     this.game = game
@@ -41,7 +42,7 @@ export default class UserInterface {
           
         if (name != null){
           alert(`Your score is: ${this.game.score} 
-          Your alltime highscore is: `)
+          Your alltime highscore is: ${this.game.highscore.highscore}`)
           this.game.hasinputname = true
         }
     }
