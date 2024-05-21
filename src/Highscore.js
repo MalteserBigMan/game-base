@@ -34,7 +34,7 @@ export default class Highscore {
   postScore(score) {
     console.log("skicka score")
 
-    const data = { score, namn: "Malte" }
+    const data = { score, namn: "mal" }
     console.log(score)
     fetch(`${this.url}/score`, {
       method: "POST",
