@@ -35,13 +35,14 @@ export default class UserInterface {
         this.game.height / 2 - 20
       )
     }
-    if (this.game.gameOver){
+    if (this.game.gameOver && this.game.hasinputname == false){
         let name = prompt ("What's your name?") 
+        this.game.name = name
+          
         if (name != null){
           alert(`Your score is: ${this.game.score} 
           Your alltime highscore is: `)
-          
-        
+          this.game.hasinputname = true
         }
     }
 

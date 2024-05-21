@@ -6,8 +6,10 @@ import Platform from './Platform.js'
 import Camera from './Camera.js'
 import Granne from './Granne.js'
 import Background from './Background.js'
+import Highscore from './Highscore.js'
 export default class Game {
   constructor(width, height) {
+    this.hasinputname = false
     this.width = width
     this.height = height
     this.input = new InputHandler(this)
@@ -36,6 +38,9 @@ export default class Game {
       new Platform(this, 0, this.ground, this.width * 20, 200),
     ]
     this.score = 0
+    this.name = "def"
+    this.highscore = new Highscore(this)
+    this.highscore.testApi()
 
   }
 
@@ -98,13 +103,14 @@ export default class Game {
       if (this.enemies === undefined || this.enemies.length == 0) {
         this.gameOver = true
         console.log(this.enemies)
-        this.doTheHighscoreThing()
+        this.highscore.postScore(this.score)
+        this.highscore.getScore()
       }
 
     }
 
-    if (this.doTheHighscoreThing = true){
-      
+    if (this.doTheHighscoreThing = true) {
+
     }
 
 
@@ -133,6 +139,7 @@ export default class Game {
       })
     })
   }
+ 
 
 
 
@@ -189,7 +196,7 @@ export default class Game {
   //     .catch((error) => {
   //       console.error(error)
   //     })
-  
+
 
 }
 
