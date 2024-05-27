@@ -34,7 +34,7 @@ export default class Highscore {
   postScore(score) {
     console.log("skicka score")
 
-    const data = { score, namn: "mal" }
+    const data = { score, name:this.game.name }
     console.log(score)
     fetch(`${this.url}/score`, {
       method: "POST",
@@ -60,6 +60,7 @@ export default class Highscore {
       .then((response) => response.json())
       .then((text) => {
         this.highscore = text[0].score
+        this.name = text[0].name
         console.log(this.highscore)
       })
       .catch((error) => {

@@ -30,7 +30,7 @@ export default class Game {
     this.enemyTimer = 0
     this.enemyInterval = 1000
     this.ui = new UserInterface(this)
-    this.gameTime = 0
+    this.gameTime = 30000
     this.ground = this.height - 100
     this.canSpawnEnemy = true;
     this.camera = new Camera(this, this.player.x, this.player.y, 0, 100)
@@ -38,7 +38,7 @@ export default class Game {
       new Platform(this, 0, this.ground, this.width * 20, 200),
     ]
     this.score = 0
-    this.name = "def"
+    this.name = ""
     this.highscore = new Highscore(this)
     this.highscore.getScore()
 
@@ -68,7 +68,7 @@ export default class Game {
 
 
       this.camera.update(this.player)
-      this.gameTime += deltaTime
+      this.gameTime -= deltaTime
 
 
       this.enemies.forEach((enemy) => {
@@ -80,9 +80,6 @@ export default class Game {
           if (this.checkCollision(projectile, enemy)) {
             projectile.markedForDeletion = true
             enemy.hp--
-            // if (enemy.hp <= 0) {
-            //   enemy.markedForDeletion = true
-            // }
           }
         })
         if (enemy.hp <= 0) {
@@ -100,12 +97,19 @@ export default class Game {
           this.score += 10
         }
       })
-      if (this.enemies === undefined || this.enemies.length == 0) {
+      if (this.gameTime <= 0) {
         this.gameOver = true
-        console.log(this.enemies)
-        this.highscore.postScore(this.score)
       }
 
+    }
+
+    if (this.enemies.length == 0){
+      this.enemies = [(new Slime(this, (Math.random() * 1500), 350)),
+        (new Slime(this, (Math.random() * 1500), 350)),
+        (new Slime(this, (Math.random() * 1500), 350)),
+        (new Slime(this, (Math.random() * 1500), 350)),
+        (new Slime(this, (Math.random() * 1500), 350)),
+        (new Slime(this, (Math.random() * 1500), 350))]
     }
 
     if (this.doTheHighscoreThing = true) {

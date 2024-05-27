@@ -18,7 +18,7 @@ export default class UserInterface {
     context.textAlign = 'left'
     context.font = `${this.fontSize}px ${this.fontFamily}`
     context.fillText(
-      `Time: ${(this.game.gameTime * 0.001).toFixed(1)}`,
+      `Time left: ${(this.game.gameTime / 1000).toFixed(1)}`,
       20,
       100
     )
@@ -37,12 +37,13 @@ export default class UserInterface {
       )
     }
     if (this.game.gameOver && this.game.hasinputname == false){
-        let name = prompt ("What's your name?") 
+        let name = prompt ("What's your name? (Max 3 letters)") 
         this.game.name = name
-          
+        this.game.highscore.postScore(this.game.score)
+        
         if (name != null){
           alert(`Your score is: ${this.game.score} 
-          Your alltime highscore is: ${this.game.highscore.highscore}`)
+          Alltime global highscore: ${this.game.highscore.highscore} by ${this.game.highscore.name.toUpperCase()}`)
           this.game.hasinputname = true
         }
     }
