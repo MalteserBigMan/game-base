@@ -39,14 +39,18 @@ export default class UserInterface {
     if (this.game.gameOver && this.game.hasinputname == false){
         let name = prompt ("What's your name? (Max 3 letters)") 
         this.game.name = name
-        this.game.highscore.postScore(this.game.score)
+        if (this.name !== null && this.name !== undefined){
+          this.game.highscore.postScore(this.game.score)
+        }
         
-        if (name != null){
+        
+        if (this.name !== null){
           alert(`Your score is: ${this.game.score} 
           Alltime global highscore: ${this.game.highscore.highscore} by ${this.game.highscore.name.toUpperCase()}`)
           this.game.hasinputname = true
         }
     }
+
 
     if (this.game.debug) {
       context.font = `15px Arial`
@@ -60,7 +64,8 @@ export default class UserInterface {
       )
       context.fillText(
         `speedY: ${this.game.player.speedY}`,
-        this.game.width - 20,
+        this.game.width - 
+        20,
         100
       )
       context.fillText(

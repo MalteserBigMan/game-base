@@ -83,10 +83,5 @@ export default class Highscore {
       })
   }
 
-
-
-
-
-
-
+  
 }
