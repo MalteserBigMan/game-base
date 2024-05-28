@@ -39,7 +39,12 @@ export default class UserInterface {
     if (this.game.gameOver && this.game.hasinputname == false){
         let name = prompt ("What's your name? (Max 3 letters)") 
         this.game.name = name
-        if (this.name !== null && this.name !== undefined){
+        if (this.game.name !== null && 
+          this.game.name !== undefined && 
+           typeof(this.game.score) === "number" && 
+           this.game.score < 1000 &&
+          this.game.name.length < 4 && 
+           this.game.name.length > 0){
           this.game.highscore.postScore(this.game.score)
         }
         

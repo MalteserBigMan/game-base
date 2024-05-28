@@ -16,7 +16,6 @@ export default class Game {
     this.background = new Background(this)
     this.keys = []
     this.gameOver = false
-    this.doTheHighscoreThing = false
     this.gravity = 0.5
     this.debug = false
     this.player = new Player(this)
